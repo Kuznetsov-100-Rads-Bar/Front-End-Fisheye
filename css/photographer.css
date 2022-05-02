@@ -3,9 +3,43 @@
 }
 
 .photograph-header {
+    display: flex;
+    padding: 0 50px;
+    justify-content: space-between;
+    align-items: center;
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+}
+
+.photograph-informations {
+    display: flex;
+    flex-direction: column;
+}
+
+.photograph-name {
+    color: #D3573C;
+    font-size: 64px;
+    margin: 0;   
+}
+
+.photograph-location {
+    color: #901C1C;
+    font-size: 24px;
+    margin: 0 0 16px;
+}
+
+.photograph-slogan {
+    color: #525252;
+    font-size: 18px;
+    margin: 0;
+}
+
+.photograph-picture {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
 }
 
 .contact_button {
