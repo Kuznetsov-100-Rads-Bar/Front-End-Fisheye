@@ -1,6 +1,6 @@
 function photographerFactory(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
-
+    // pour récupérer les données nécessaires (id, tagline, city, etc..)
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
