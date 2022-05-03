@@ -1,3 +1,9 @@
+/**
+ * It takes a photographer object as an argument and returns a new object with the properties name,
+ * picture, and getUserCardDOM.
+ * @param data - {
+ * @returns The function getUserCardDOM() is being returned.
+ */
 function photographerFactory(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
   // pour récupérer les données nécessaires (id, tagline, city, etc..)
