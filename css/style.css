@@ -31,15 +31,9 @@ h1 {
 }
 
 .photographer_section a {
-<<<<<<< HEAD
     text-decoration: none;
 }
 
-=======
-
-    text-decoration: none;
-}
->>>>>>> 5ca64527f7bcf6022250a9c9309a077793e254af
 .photographer_section article {
   justify-self: center;
   display: flex;
