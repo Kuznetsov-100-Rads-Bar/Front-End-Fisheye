@@ -55,6 +55,9 @@ const fetchPhotographer = async () => {
 
     const photographer = fetchPhotographer.photographers.find((photographer) => photographer.id === photographerId);
 
+    /* It checks if the phot rId is not null, if it is a number and if the photographer exists. If
+    one of these conditions is not met, it redirects to the previous page. Otherwise, it returns the
+    photographer. */
     if (!photographerId || !Number(photographerId) || !photographer) {
         return window.location.assign('../');
     }
