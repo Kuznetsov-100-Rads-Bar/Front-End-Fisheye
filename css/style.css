@@ -53,3 +53,39 @@ h1 {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.photograph_works {
+  margin: 24px 100px ;
+}
+
+.filter {
+  display: flex;
+}
+
+.filter-text {
+margin: 8px 0;
+margin-right: 18px;
+font-size: 18px;
+font-weight: bold;
+}
+
+.filter-selector > select {
+  background-color: #901c1c;
+  border: none;
+  padding: 8px 16px 8px 8px;
+  margin: 0;
+  width: 100%;
+  color: white;
+  font-size: 16px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+  /*appearance: none;*/
+}
+
+
+
+
+

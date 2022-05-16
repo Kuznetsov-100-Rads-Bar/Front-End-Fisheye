@@ -5,19 +5,36 @@
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="./css/photographer.css">
+  <!-- <link rel="stylesheet" href="./css/photographer.css"> -->
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <title>Fisheye - photographe </title>
 </head>
 
 <body>
   <header>
-    <img src="assets/images/logo.png" class="logo" />
+    <a tabindex="1" href="./" title="Vers la page d'accueil">
+      <img src="assets/images/logo.png" class="logo" />
+    </a>
   </header>
-  <main id="main">
+  <main id="main" class="photograph_page">
     <div class="photograph-header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
+    <section class="photograph_works">
+      <div class="filter">
+        <p aria-label="Menu déroulant qui sert à trier les medias par popularité, date ou par ordre alphabétique,."
+          class="filter-text">Trier par</p>
+        <div class="filter-selector">
+          <select title="Menu déroulant qui sert à trier les medias par popularité, date ou par ordre alphabétique,."
+            tabindex="1" name="filter" id="filterSelector">
+            <option aria-label="Trier par popularité," value="popularity">Popularité</option>
+            <option aria-label="Trier par date de publication," value="date">Date</option>
+            <option aria-label="Trier par ordre alphabétique," value="title">Title</option>
+          </select>
+        </div>
+      </div>
+      <div role="grid" aria-label="Liste des travaux effectués par le photographe,." class="photograph_medias"></div>
+    </section>
   </main>
   <div id="contact_modal">
     <div class="modal">
@@ -34,8 +51,9 @@
       </form>
     </div>
   </div>
-  <script src="/scripts/utils/contactForm.js"></script>
-  <script src="scripts/pages/photographer.js"></script>
+  <script src="./scripts/utils/contactForm.js"></script>
+  <script src="./scripts/pages/photographer.js"></script>
+  <script src="./scripts/factories/photograph.js"></script>
 </body>
 
 </html>

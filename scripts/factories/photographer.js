@@ -4,13 +4,23 @@
  * @param data - {
  * @returns The function getUserCardDOM() is being returned.
  */
+/* It takes a photographer object as an argument and returns a new object with the properties name,
+picture, and getUserCardDOM. */
+//Fonction factory pour l'affichage de la page d'accueil
 function photographerFactory(data) {
+  /* Destructuring the data object. */
   const { name, portrait, city, country, tagline, price, id } = data;
+  /* Creating a new variable called picture and assigning it the value of the portrait property of the
+data object. */
   // pour récupérer les données nécessaires (id, tagline, city, etc..)
   const picture = `assets/photographers/${portrait}`;
 
+  /* Creating a function that will return a link. */
   function getUserCardDOM() {
+    /* It creates a link element. */
     const link = document.createElement("a");
+
+    /* Création d'un lien vers la page photographe.html. */
     link.setAttribute(
       "href",
       window.location.origin + "/photographer.html?id=" + id
@@ -49,5 +59,6 @@ function photographerFactory(data) {
     article.appendChild(photographerPrice);
     return link;
   }
+  /* Returning the name, picture, and getUserCardDOM properties. */
   return { name, picture, getUserCardDOM };
 }
