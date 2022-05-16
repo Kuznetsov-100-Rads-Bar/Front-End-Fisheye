@@ -85,7 +85,22 @@ font-weight: bold;
   /*appearance: none;*/
 }
 
+.photograph_medias {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 32px 10%;
+}
 
+.photograph_media {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
 
-
-
+.photograph_media_picture {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+}
