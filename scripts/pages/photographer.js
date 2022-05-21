@@ -140,91 +140,117 @@ const displayProfileData = async (photograph) => {
 
 
 // Afficher le contenu d'une photo
-const displayPhotographContent = async (photograph) => {
-    const photographMedias = document.querySelector('.photograph_medias');
-    const { medias } = await getMedias(photograph);
-    let tabIndex = 0;
+// const displayPhotographContent = async (photograph) => {
+//     const photographMedias = document.querySelector('.photograph_medias');
+//     const { medias } = await getMedias(photograph);
+//     let tabIndex = 0;
 
-    const filter = document.getElementById('filterSelector');
-    let filterValue = filter.value;
+//     const filter = document.getElementById('filterSelector');
+//     let filterValue = filter.value;
 
-    medias
-        .sort((a, b) => b.likes - a.likes)
-        .forEach(async (media) => {
-            tabIndex = tabIndex + 1;
+//     medias
+//         .sort((a, b) => b.likes - a.likes)
+//         .forEach(async (media) => {
+//             tabIndex = tabIndex + 1;
 
-            media.photographerName = photograph.name;
-            media.tabIndex = tabIndex;
+//             media.photographerName = photograph.name;
+//             media.tabIndex = tabIndex;
 
-            // eslint-disable-next-line no-undef
-            const mediaModel = photographFactory(media);
-            const mediaCardDOM = await mediaModel.getMediaCardDOM();
-            photographMedias.appendChild(mediaCardDOM);
-        });
+//             // eslint-disable-next-line no-undef
+//             const mediaModel = photographFactory(media);
+//             const mediaCardDOM = await mediaModel.getMediaCardDOM();
+//             photographMedias.appendChild(mediaCardDOM);
+//         });
 
-    updateTotalLikes(medias, photograph.price);
+//     updateTotalLikes(medias, photograph.price);
 
-    /* A callback function that is called when the value of the filter changes. */
-    filter.addEventListener('change', (event) => {
-        tabIndex = 0;
-        filterValue = event.currentTarget.value;
+//     /* A callback function that is called when the value of the filter changes. */
+//     filter.addEventListener('change', (event) => {
+//         tabIndex = 0;
+//         filterValue = event.currentTarget.value;
 
-        photographMedias.innerHTML = '';
-        medias.sort((a, b) => filterValue === 'popularity' ? b.likes - a.likes : filterValue === 'date' ? new Date(b.date) - new Date(a.date) : filterValue === 'title' ? b.title < a.title : b > a)
-            .forEach(async (media) => {
-                tabIndex = tabIndex + 1;
+//         photographMedias.innerHTML = '';
+//         medias.sort((a, b) => filterValue === 'popularity' ? b.likes - a.likes : filterValue === 'date' ? new Date(b.date) - new Date(a.date) : filterValue === 'title' ? b.title < a.title : b > a)
+//             .forEach(async (media) => {
+//                 tabIndex = tabIndex + 1;
 
-                media.photographerName = photograph.name;
-                media.tabIndex = tabIndex;
+//                 media.photographerName = photograph.name;
+//                 media.tabIndex = tabIndex;
 
-                // eslint-disable-next-line no-undef
-                const mediaModel = photographFactory(media);
-                const mediaCardDOM = await mediaModel.getMediaCardDOM();
-                photographMedias.appendChild(mediaCardDOM);
-            });
-        updateTotalLikes(medias, photograph.price);
-    });
-};
+//                 // eslint-disable-next-line no-undef
+//                 const mediaModel = photographFactory(media);
+//                 const mediaCardDOM = await mediaModel.getMediaCardDOM();
+//                 photographMedias.appendChild(mediaCardDOM);
+//             });
+//         updateTotalLikes(medias, photograph.price);
+//     });
+// };
 
-const updateTotalLikes = async (medias, price) => {
-    let likes = 0;
+// const updateTotalLikes = async (medias, price) => {
+//     let likes = 0;
 
-    /* Adding the likes of each media to the total likes of the photograph. */
-    medias.map((media) => (likes = likes + media.likes));
+//     /* Adding the likes of each media to the total likes of the photograph. */
+//     medias.map((media) => (likes = likes + media.likes));
 
-    const statsLikes = document.querySelector('.photograph_stats_likes');
-    statsLikes.innerText = `${likes.toString()} \u2764`;
-    const statsPrice = document.querySelector('.photograph_stats_price');
-    statsPrice.innerText = `${price.toString()}€ / heure`;
+//     const statsLikes = document.querySelector('.photograph_stats_likes');
+//     statsLikes.innerText = `${likes.toString()} \u2764`;
+//     const statsPrice = document.querySelector('.photograph_stats_price');
+//     statsPrice.innerText = `${price.toString()}€ / heure`;
 
-    const mediasContainer = document.querySelector('.photograph_medias');
-    /* Adding the event listener to the `photograph_medias` element. */
-    mediasContainer.addEventListener('click', (event) => {
-        if (event.target.classList.contains('photograph_media_informations_likes_button')) {
-            likes = likes + 1;
-            statsLikes.innerText = `${likes} \u2764`;
+//     const mediasContainer = document.querySelector('.photograph_medias');
+//     /* Adding the event listener to the `photograph_medias` element. */
+//     mediasContainer.addEventListener('click', (event) => {
+//         if (event.target.classList.contains('photograph_media_informations_likes_button')) {
+//             likes = likes + 1;
+//             statsLikes.innerText = `${likes} \u2764`;
+//         }
+//         if (event.target.classList.contains('photograph_media_picture')) {
+//             const selectedMedia = event.target.parentNode.attributes.tabIndex.value - 1;
+//             // eslint-disable-next-line no-undef
+//             displayLightbox(medias, selectedMedia || 0);
+//         }
+//     });
+
+//     mediasContainer.addEventListener('keydown', (event) => {
+//         const keyPressed = event.key;
+//         /* Checking if the key pressed is the spacebar or the enter key. If it is, then it will get the
+//         tabIndex of the selected media and subtract 1 from it. Then it will display the lightbox with
+//         the selected media. */
+//         if (keyPressed === ' ' || keyPressed === 'Enter') {
+//             const selectedMedia = event.target.attributes.tabIndex.value - 1;
+//             // eslint-disable-next-line no-undef
+//             displayLightbox(medias, selectedMedia || 0);
+//         }
+//     });
+// }
+
+class MediaList {
+    constructor() {
+        this.medias = []
+
+        this.add = ({ photographerName, media }) => {
+            const source = `assets/${photographerName.split(" ")[0]}/media`
+            this.medias.push({ source: source, photographerName: photographerName, media: media });
+            return true;
         }
-        if (event.target.classList.contains('photograph_media_picture')) {
-            const selectedMedia = event.target.parentNode.attributes.tabIndex.value - 1;
-            // eslint-disable-next-line no-undef
-            displayLightbox(medias, selectedMedia || 0);
-        }
-    });
 
-    mediasContainer.addEventListener('keydown', (event) => {
-        const keyPressed = event.key;
-        /* Checking if the key pressed is the spacebar or the enter key. If it is, then it will get the
-        tabIndex of the selected media and subtract 1 from it. Then it will display the lightbox with
-        the selected media. */
-        if (keyPressed === ' ' || keyPressed === 'Enter') {
-            const selectedMedia = event.target.attributes.tabIndex.value - 1;
-            // eslint-disable-next-line no-undef
-            displayLightbox(medias, selectedMedia || 0);
+        this.retreive = () => {
+            return this.medias;
         }
-    });
+    }
+
 }
 
+const displayMedias = async (photographer, medias) => {
+    const mediaList = new MediaList();
 
+    console.log(photographer);
+    console.log(medias);
+
+    mediaList.add({ photographerName: photographer.name, media: medias[0] });
+
+    console.log(mediaList.retreive());
+}
 
 /**
  * An async function that is called when the page loads.
@@ -236,14 +262,16 @@ const init = async () => {
     /* It's creating a new instance of the class PhotographerProfile with the parameters
     photographer.name, photographer.city, photographer.country, photographer.tagline and
     photographer.portrait. */
+    /* Le mot clé ci-dessous "new" nous permet d'instancier un nouvel objet =>
+    en faite ça veut dire que l'on va  créer un nouvel objet à partir de ma fonction
+     ou de ma classe.
+    */
     const photographerProfile = new PhotographerProfile(photographer.name, `${photographer.city}, ${photographer.country}`, photographer.tagline, photographer.portrait);
 
 
+    const medias = await getMedias(photographer);
 
-
-    // console.log(photographer)
-
-    console.log(await getMedias(photographer))
+    await displayMedias(photographer, medias);
 }
 
 /* It's calling the function init. */

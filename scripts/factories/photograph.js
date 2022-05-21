@@ -9,8 +9,11 @@ const photographFactory = (data) => {
   const photographerName = data.photographerName ? data.photographerName.split(' ')[0].replace('-', '') : null;
   const picture = `./assets/photographers/${portrait}`;
   const media = `./assets/medias/${photographerName}`;
-
-
+  console.log(media);
+  /**
+   * Create a DOM element for the profile card and add it to the photograph header
+   * @returns The DOM element that contains the profile card.
+   */
   const getProfileCardDOM = () => {
     const profileHeader = document.querySelector('.photograph-header');
 
@@ -49,6 +52,9 @@ const photographFactory = (data) => {
     return profileHeader;
   }
 
+  /**
+   * Create the DOM for the media card
+   */
   const getMediaCardDOM = () => {
     // Faire le DOM des medias.
     const article = document.createElement('article');

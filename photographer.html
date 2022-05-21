@@ -10,7 +10,7 @@
   <title>Fisheye - photographe </title>
 </head>
 
-<body>
+<body class="photographer">
   <header>
     <a tabindex="1" href="./" title="Vers la page d'accueil">
       <img src="assets/images/logo.png" class="logo" />
@@ -33,12 +33,25 @@
           </select>
         </div>
       </div>
-      <div role="grid" aria-label="Liste des travaux effectués par le photographe,." class="photograph_medias"></div>
+      <div role="grid" aria-label="Liste des travaux effectués par le photographe,." class="photograph_medias">
+
+        <div class="media-card">
+          <img src="./assets/medias/Marcel/Architecture_Corner_Room.jpg" alt="Media" class="media-img">
+          <div class="media-card-body">
+            <p class="media-card-body-title">Arc-en-ciel</p>
+            <div class="media-card-body-likes">
+              <span class="likes-count">11</span>
+              <span class="heart-icon">&#10084;</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
   </main>
   <div id="lightbox" class="lightbox">
     <div id="lightboxMediaContainer">
-      <img src="./assets/medias/Mimi/Animals_Rainbow.jpg" alt="">
+      <!-- <img src="./assets/medias/Mimi/Animals_Rainbow.jpg" alt=""> -->
     </div>
   </div>
   <div id="contact_modal">

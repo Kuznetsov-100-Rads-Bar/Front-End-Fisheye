@@ -1,3 +1,7 @@
+/**
+ * It fetches the JSON file, then returns the photographers array
+ * @returns The function getPhotographers is returning an object with a property photographers.
+ */
 async function getPhotographers() {
   // Penser à remplacer par les données récupérées dans le json
   // Renommer ma constante en data ()
@@ -32,7 +36,7 @@ async function displayData(photographers) {
  * calls the function displayData() with the result of getPhotographers() as an argument.
  */
 async function init() {
-  // Récupère les datas des photographes
+  // On récupère les datas des photographes
   const { photographers } = await getPhotographers();
   /* Calling the function displayData() with the result of getPhotographers() as an argument. */
   displayData(photographers);
