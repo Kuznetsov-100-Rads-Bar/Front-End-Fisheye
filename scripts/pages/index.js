@@ -1,3 +1,4 @@
+import { photographerFactory } from "../factories/photographer.js";
 /**
  * It fetches the JSON file, then returns the photographers array
  * @returns The function getPhotographers is returning an object with a property photographers.

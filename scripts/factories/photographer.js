@@ -7,7 +7,7 @@
 /* It takes a photographer object as an argument and returns a new object with the properties name,
 picture, and getUserCardDOM. */
 //Fonction factory pour l'affichage de la page d'accueil
-function photographerFactory(data) {
+export function photographerFactory(data) {
   /* Destructuring the data object. */
   const { name, portrait, city, country, tagline, price, id } = data;
   /* Creating a new variable called picture and assigning it the value of the portrait property of the

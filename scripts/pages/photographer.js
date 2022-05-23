@@ -118,6 +118,10 @@ const getMedias = async (photograph) => {
 
 
 //  ça affiche la carte du profil de la photographie.
+/**
+ * This function is supposed to display the profile data of a photographer on the page.
+ * @param photograph - {
+ */
 // const displayProfileData = async (photograph) => {
 //     const profileSection = document.querySelector('.photograph_page');
 //     // eslint-disable-next-line no-undef
@@ -198,4 +202,4 @@ const init = async () => {
 }
 
 /* It's calling the function init. */
-init();
+init()
