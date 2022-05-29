@@ -150,12 +150,55 @@ class MediaList {
         this.medias = []
 
         this.add = ({ photographerName, media }) => {
-            const source = `assets/${photographerName.split(" ")[0]}/media`
+            const source = `assets/medias/${photographerName.split(" ")[0]}/${media.image ? media.image : media.video}`
             this.medias.push({ source: source, photographerName: photographerName, media: media });
             return true;
         }
 
-        this.retreive = () => {
+        this.display = () => {
+            const mediaSection = document.getElementById("mediaSection");
+            mediaSection.innerHTML = "";
+            this.medias.forEach((element) => {
+                const media = element.media;
+
+                const cardContainer = document.createElement("div");
+                cardContainer.classList.add("media-card");
+
+                const cardImage = document.createElement("img");
+                cardImage.setAttribute("src", element.source);
+                cardImage.classList.add("media-img");
+                cardImage.setAttribute("alt", "Media " + media.title);
+
+                const mediaCardBody = document.createElement("div");
+                mediaCardBody.classList.add("media-card-body");
+
+                const mediaCardBodyTitle = document.createElement("p");
+                mediaCardBodyTitle.classList.add("media-card-body-title");
+                mediaCardBodyTitle.textContent = media.title;
+
+                const mediaCardBodyLikes = document.createElement("div");
+                mediaCardBodyLikes.classList.add("media-card-body-likes");
+
+                const mediaCardLikesCount = document.createElement("span");
+                mediaCardLikesCount.classList.add("likes-count");
+                mediaCardLikesCount.textContent = media.likes
+
+
+                const mediaCardHeartIcon = document.createElement("button");
+                mediaCardHeartIcon.setAttribute("type", "button");
+                mediaCardHeartIcon.classList.add("heart-icon");
+                mediaCardHeartIcon.innerHTML = "&#10084;";
+
+
+                cardContainer.appendChild(cardImage);
+                cardContainer.appendChild(mediaCardBody);
+                mediaCardBody.appendChild(mediaCardBodyTitle);
+                mediaCardBody.appendChild(mediaCardBodyLikes);
+                mediaCardBodyLikes.appendChild(mediaCardLikesCount);
+                mediaCardBodyLikes.appendChild(mediaCardHeartIcon);
+
+                return mediaSection.append(cardContainer);
+            });
             return this.medias;
         }
     }
@@ -174,10 +217,22 @@ const displayMedias = async (photographer, medias) => {
     console.log(photographer);
     console.log(medias);
 
-    mediaList.add({ photographerName: photographer.name, media: medias[0] });
+    medias.forEach((media) => {
+        mediaList.add({ photographerName: photographer.name, media: media });
+    })
 
-    console.log(mediaList.retreive());
+    mediaList.display();
 }
+/*
+let arrayImages = [];
+displayMedias.media.map((element) => {
+   if (element.photographerId == URL && element.image) {
+       const images = images;
+       arrayImages.push(images);
+   }
+});
+*/
+
 
 /**
  * An async function that is called when the page loads.
@@ -186,9 +241,7 @@ const init = async () => {
     /* On obtient l'identifiant du photographe à partir de l'URL. */
     const photographer = await fetchPhotographer();
 
-    /* It's creating a new instance of the class PhotographerProfile with the parameters
-    photographer.name, photographer.city, photographer.country, photographer.tagline and
-    photographer.portrait. */
+
     /* Le mot clé ci-dessous "new" nous permet d'instancier un nouvel objet =>
     en faite ça veut dire que l'on va  créer un nouvel objet à partir de ma fonction
      ou de ma classe.

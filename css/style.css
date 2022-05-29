@@ -118,6 +118,7 @@ font-weight: bold;
   width: 350px;
   height: 300px;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 .media-card-body {
