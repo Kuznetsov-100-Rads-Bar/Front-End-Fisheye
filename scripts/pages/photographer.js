@@ -122,26 +122,6 @@ const getMedias = async (photograph) => {
  * This function is supposed to display the profile data of a photographer on the page.
  * @param photograph - {
  */
-// const displayProfileData = async (photograph) => {
-//     const profileSection = document.querySelector('.photograph_page');
-//     // eslint-disable-next-line no-undef
-//     const photographModel = photographFactory(photograph);
-//     const profileCardDOM = photographModel.getProfileCardDOM();
-
-//     const contactButton = document.querySelector('.contact_button');
-//     const closeModalButton = document.getElementById('close_modal');
-
-//     const elementsListened = [contactButton, closeModalButton];
-//     elementsListened.forEach((element) => {
-//         // eslint-disable-next-line
-//         element.addEventListener('click', toggleModal)
-//     });
-
-//     profileSection.prepend(profileCardDOM);
-// };
-
-
-
 
 
 /* It's a class that stores a list of media objects. */
@@ -223,15 +203,6 @@ const displayMedias = async (photographer, medias) => {
 
     mediaList.display();
 }
-/*
-let arrayImages = [];
-displayMedias.media.map((element) => {
-   if (element.photographerId == URL && element.image) {
-       const images = images;
-       arrayImages.push(images);
-   }
-});
-*/
 
 
 /**
