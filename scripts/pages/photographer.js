@@ -24,7 +24,6 @@ class PhotographerProfile {
         photographInformations. */
         photographInformations.classList.add('photograph-informations');
 
-
         /* It creates a new h3 element and stores it in the variable photographName. */
         const photographName = document.createElement('h3');
         /* It adds the class "photograph-name" to the element stored in the variable photographName. */
@@ -32,7 +31,6 @@ class PhotographerProfile {
         /* It's setting the text content of the element stored in the variable photographName to the
         value of the property name of the object stored in the variable this. */
         photographName.textContent = this.name;
-
 
         /* It creates a new p element and stores it in the variable photographLocation. */
         const photographLocation = document.createElement("p");
@@ -43,7 +41,6 @@ class PhotographerProfile {
         value of the property location of the object stored in the variable this. */
         photographLocation.textContent = this.location;
 
-
         /* It creates a new p element and stores it in the variable photographSlogan. */
         const photographSlogan = document.createElement('p');
         /* It adds the class "photograph-slogan" to the element stored in the variable
@@ -52,7 +49,6 @@ class PhotographerProfile {
         /* It's setting the text content of the element stored in the variable photographSlogan to the
         value of the property slogan of the object stored in the variable this. */
         photographSlogan.textContent = this.slogan;
-
 
         /* It creates a new img element and stores it in the variable photographPicture. */
         const photographPicture = document.createElement('img');
@@ -65,7 +61,6 @@ class PhotographerProfile {
         /* It's setting the alt attribute of the element stored in the variable photographPicture to
         the value of the property name of the object stored in the variable this. */
         photographPicture.setAttribute('alt', `Photo de profil de ${this.name}`);
-
 
         /* It's adding the element stored in the variable photographInformations as the first child of
         the element stored in the variable photographHeader. */
@@ -116,7 +111,6 @@ const getMedias = async (photograph) => {
 };
 
 
-
 //  ça affiche la carte du profil de la photographie.
 /**
  * This function is supposed to display the profile data of a photographer on the page.
@@ -124,63 +118,67 @@ const getMedias = async (photograph) => {
  */
 
 
-/* It's a class that stores a list of media objects. */
+/* It's a class that creates a list of media objects, and displays them on the page. */
 class MediaList {
+    /**
+     * It takes an object with a photographerName and media object as parameters, then it creates a
+     * source variable that is a string of the photographer's name and the media's image or video, then
+     * it pushes the source, photographerName, and media object into the medias array, and then it
+     * returns true.
+     */
     constructor() {
         this.medias = []
+    }
 
-        this.add = ({ photographerName, media }) => {
-            const source = `assets/medias/${photographerName.split(" ")[0]}/${media.image ? media.image : media.video}`
-            this.medias.push({ source: source, photographerName: photographerName, media: media });
-            return true;
-        }
+    add = ({ photographerName, media }) => {
+        const source = `assets/medias/${photographerName.split(" ")[0]}/${media.image ? media.image : media.video}`
+        this.medias.push({ source: source, media: media });
+        return true;
+    }
 
-        this.display = () => {
-            const mediaSection = document.getElementById("mediaSection");
-            mediaSection.innerHTML = "";
-            this.medias.forEach((element) => {
-                const media = element.media;
+    display = () => {
+        const mediaSection = document.getElementById("mediaSection");
+        mediaSection.innerHTML = "";
+        this.medias.forEach((element) => {
+            const media = element.media;
 
-                const cardContainer = document.createElement("div");
-                cardContainer.classList.add("media-card");
+            const cardContainer = document.createElement("div");
+            cardContainer.classList.add("media-card");
 
-                const cardImage = document.createElement("img");
-                cardImage.setAttribute("src", element.source);
-                cardImage.classList.add("media-img");
-                cardImage.setAttribute("alt", "Media " + media.title);
+            const cardImage = document.createElement("img");
+            cardImage.setAttribute("src", element.source);
+            cardImage.classList.add("media-img");
+            cardImage.setAttribute("alt", "Media " + media.title);
 
-                const mediaCardBody = document.createElement("div");
-                mediaCardBody.classList.add("media-card-body");
+            const mediaCardBody = document.createElement("div");
+            mediaCardBody.classList.add("media-card-body");
 
-                const mediaCardBodyTitle = document.createElement("p");
-                mediaCardBodyTitle.classList.add("media-card-body-title");
-                mediaCardBodyTitle.textContent = media.title;
+            const mediaCardBodyTitle = document.createElement("p");
+            mediaCardBodyTitle.classList.add("media-card-body-title");
+            mediaCardBodyTitle.textContent = media.title;
 
-                const mediaCardBodyLikes = document.createElement("div");
-                mediaCardBodyLikes.classList.add("media-card-body-likes");
+            const mediaCardBodyLikes = document.createElement("div");
+            mediaCardBodyLikes.classList.add("media-card-body-likes");
 
-                const mediaCardLikesCount = document.createElement("span");
-                mediaCardLikesCount.classList.add("likes-count");
-                mediaCardLikesCount.textContent = media.likes
+            const mediaCardLikesCount = document.createElement("span");
+            mediaCardLikesCount.classList.add("likes-count");
+            mediaCardLikesCount.textContent = media.likes
 
+            const mediaCardHeartIcon = document.createElement("button");
+            mediaCardHeartIcon.setAttribute("type", "button");
+            mediaCardHeartIcon.classList.add("heart-icon");
+            mediaCardHeartIcon.innerHTML = "&#10084;";
 
-                const mediaCardHeartIcon = document.createElement("button");
-                mediaCardHeartIcon.setAttribute("type", "button");
-                mediaCardHeartIcon.classList.add("heart-icon");
-                mediaCardHeartIcon.innerHTML = "&#10084;";
+            cardContainer.appendChild(cardImage);
+            cardContainer.appendChild(mediaCardBody);
+            mediaCardBody.appendChild(mediaCardBodyTitle);
+            mediaCardBody.appendChild(mediaCardBodyLikes);
+            mediaCardBodyLikes.appendChild(mediaCardLikesCount);
+            mediaCardBodyLikes.appendChild(mediaCardHeartIcon);
 
-
-                cardContainer.appendChild(cardImage);
-                cardContainer.appendChild(mediaCardBody);
-                mediaCardBody.appendChild(mediaCardBodyTitle);
-                mediaCardBody.appendChild(mediaCardBodyLikes);
-                mediaCardBodyLikes.appendChild(mediaCardLikesCount);
-                mediaCardBodyLikes.appendChild(mediaCardHeartIcon);
-
-                return mediaSection.append(cardContainer);
-            });
-            return this.medias;
-        }
+            return mediaSection.append(cardContainer);
+        });
+        return this.medias;
     }
 
 }
@@ -204,7 +202,6 @@ const displayMedias = async (photographer, medias) => {
     mediaList.display();
 }
 
-
 /**
  * An async function that is called when the page loads.
  */
@@ -212,13 +209,11 @@ const init = async () => {
     /* On obtient l'identifiant du photographe à partir de l'URL. */
     const photographer = await fetchPhotographer();
 
-
     /* Le mot clé ci-dessous "new" nous permet d'instancier un nouvel objet =>
     en faite ça veut dire que l'on va  créer un nouvel objet à partir de ma fonction
      ou de ma classe.
     */
     const photographerProfile = new PhotographerProfile(photographer.name, `${photographer.city}, ${photographer.country}`, photographer.tagline, photographer.portrait);
-
 
     const medias = await getMedias(photographer);
 
