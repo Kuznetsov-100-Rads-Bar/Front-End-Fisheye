@@ -145,7 +145,9 @@ class MediaList {
             const cardContainer = document.createElement("div");
             cardContainer.classList.add("media-card");
 
-            const cardImage = document.createElement("img");
+            const sourceType = element.source.split(".");
+            console.log(element.source)
+            const cardImage = document.createElement(sourceType[1] === "mp4" ? "video" : "img");
             cardImage.setAttribute("src", element.source);
             cardImage.classList.add("media-img");
             cardImage.setAttribute("alt", "Media " + media.title);
