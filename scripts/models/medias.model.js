@@ -54,10 +54,6 @@ export class MediaList {
         return "Media list cleared";
     }
 
-    fetch = () => {
-        return this.medias;
-    }
-
     display = () => {
         const mediaSection = document.getElementById("mediaSection");
         mediaSection.innerHTML = "";

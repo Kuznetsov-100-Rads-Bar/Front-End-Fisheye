@@ -65,10 +65,27 @@
         <h2>Contactez-moi</h2>
         <img src="assets/icons/close.svg" onclick="closeModal()" />
       </header>
-      <form>
+      <form id="formContact" name="reserve" action="#" method="get">
         <div>
-          <label>Prénom</label>
-          <input />
+          <div>
+            <label for="lastName">Nom</label>
+            <input class="text-control" type="text" id="lastName" name="lastName" required="true" minlength="2" />
+          </div>
+
+          <div>
+            <label for="firstName">Prénom</label>
+            <input class="text-control" type="text" id="firstName" name="firstName" required="true" minlength="2" />
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input class="text-control" type="text" id="email" name="email" required="true" />
+          </div>
+
+          <div>
+            <label for="message">Votre message</label>
+            <textarea id="message" class="message-contact" type="text" required="true"></textarea>
+          </div>
         </div>
         <button class="contact_button">Envoyer</button>
       </form>
