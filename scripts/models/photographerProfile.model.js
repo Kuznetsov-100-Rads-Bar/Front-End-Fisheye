@@ -17,6 +17,9 @@ export class PhotographerProfile {
     }
 
     display = () => {
+        const formHeaderTitle = document.getElementById("formHeaderTitle");
+        formHeaderTitle.innerHTML = `${formHeaderTitle.textContent} <br/>${this.name}`;
+        formHeaderTitle.style.textAlign = 'left';
         /* It's a variable that stores the element with the class "photograph-header" in the DOM. */
         const photographHeader = document.querySelector(".photograph-header");
 

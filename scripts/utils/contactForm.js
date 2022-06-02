@@ -10,7 +10,7 @@ function closeModal() {
 
 // Je selectionne et je stocke tous les éléments nécessaires.
 const form = document.getElementById("formContact");
-console.log()
+
 const lastName = document.getElementById("lastName");
 const firstName = document.getElementById("firstName");
 const email = document.getElementById("email");
