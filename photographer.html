@@ -3,6 +3,7 @@
 
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="./css/photographer.css">
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <!-- <link rel="stylesheet" href="./css/photographer.css"> -->
@@ -91,6 +92,21 @@
       </form>
     </div>
   </div>
+
+  <div class="lightbox_modal">
+    <img class="close_modal" src="./assets/icons/closeRed.svg" alt="close lightbox modal" />
+    <div class="lightbox_content">
+      <button type="button" class="left_arrow_button"><img class="left_arrow" src="./assets/icons/leftArrow.svg"
+          alt="Previous media button"></button>
+      <div class="media_container">
+        <img class="lightbox_media" src="./assets/medias/Ellie-Rose/Architecture_Connected_Curves.jpg" alt="Media">
+        <p class="lightbox_media_title">Arc-en-ciel</p>
+      </div>
+      <button type="button" class="right_arrow_button"><img class="right_arrow" src="./assets/icons/rightArrow.svg"
+          alt="Next media button"></button>
+    </div>
+  </div>
+
   <script src="./scripts/utils/contactForm.js"></script>
   <script src="./scripts/pages/photographer.js" type="module"></script>
   <!--<script src="./scripts/factories/photograph.js"></script>-->
