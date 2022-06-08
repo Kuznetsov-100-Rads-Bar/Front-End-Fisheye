@@ -16,13 +16,29 @@ export class MediaList {
 
         filterSelector.addEventListener("change", (event) => {
             const selectedValue = event.target.value;
+            let updatedMedias = [];
 
-            const updatedMedias = medias.sort((a, b) =>
-                selectedValue === "popularity" ? a.likes < b.likes :
-                    selectedValue === "date" ? new Date(a.date) - new Date(b.date) :
-                        selectedValue === "title" ? a.title > b.title :
-                            a.likes < b.likes
-            );
+            if (selectedValue === "popularity") {
+                updatedMedias = medias.sort((a, b) => a.likes < b.likes ? 1 : -1);
+            }
+
+            if (selectedValue === "date") {
+                updatedMedias = medias.sort((a, b) => new Date(a.date) - new Date(b.date));
+            }
+
+            if (selectedValue === "title") {
+                updatedMedias = medias.sort((a, b) => a.title > b.title ? 1 : -1);
+            }
+
+
+            // const updatedMedias = medias.sort((a, b) =>
+            //     selectedValue === "popularity" ? a.likes < b.likes :
+            //         selectedValue === "date" ? new Date(a.date) - new Date(b.date) :
+            //             selectedValue === "title" ? a.title > b.title :
+            //                 a.likes < b.likes
+            // );
+
+            console.log(updatedMedias)
 
             this.clear();
 

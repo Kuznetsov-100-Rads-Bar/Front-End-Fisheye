@@ -1,8 +1,14 @@
+/* It's importing the classes from the models folder. */
 import { MediaList } from '../models/medias.model.js';
 import { PhotographerProfile } from '../models/photographerProfile.model.js';
 import { Lightbox } from '../models/lightbox.model.js';
 
 
+/**
+ * If the photographerId is not a number, or if the photographerId is not found in the photographers
+ * array, then redirect to the homepage.
+ * @returns The photographer object.
+ */
 const fetchPhotographer = async () => {
     const photographerId = parseInt(new URLSearchParams(window.location.search).get('id'));
     const fetchPhotographer = await fetch('./data/photographers.json').then((data) => data.json());
@@ -25,6 +31,12 @@ const getMedias = async (photograph) => {
 
 };
 
+/**
+ * This function takes a photographer object as an argument and creates a new PhotographerProfile
+ * object with the photographer's name, city, country, tagline, and portrait. Then it displays the
+ * photographer's profile.
+ * @param photographer - {
+ */
 const displayPhotographerProfile = (photographer) => {
     const photographerProfile = new PhotographerProfile(photographer.name, `${photographer.city}, ${photographer.country}`, photographer.tagline, photographer.portrait);
     photographerProfile.display();
@@ -41,6 +53,13 @@ const displayMedias = async (photographer, medias) => {
     mediaList.init(photographer, medias);
 };
 
+/**
+ * It takes an array of media objects and a photographer name, and then it creates a new Lightbox
+ * object, and then it adds event listeners to the media section, the next and previous buttons, and
+ * the close button.
+ * @param medias - an array of media objects
+ * @param photographerName - "John Doe"
+ */
 const initLighbox = (medias, photographerName) => {
     const lightBox = new Lightbox(medias, photographerName);
 
