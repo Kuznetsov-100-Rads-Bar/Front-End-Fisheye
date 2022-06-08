@@ -8,6 +8,7 @@ export class MediaList {
      */
     constructor() {
         this.medias = [];
+        this.tabIndex = 3;
     }
 
     init = (photographer, medias) => {
@@ -30,6 +31,7 @@ export class MediaList {
                 this.add({ photographerName: photographer.name, media: media });
             });
 
+            this.tabIndex = 3;
             this.display();
         });
 
@@ -39,6 +41,7 @@ export class MediaList {
                 this.add({ photographerName: photographer.name, media: media });
             });
 
+        this.tabIndex = 3;
         this.display();
         this.displayLikes();
     }
@@ -62,6 +65,9 @@ export class MediaList {
 
             const cardContainer = document.createElement("div");
             cardContainer.classList.add("media-card");
+
+            this.tabIndex += 1;
+            cardContainer.setAttribute("tabindex", this.tabIndex);
 
             const sourceType = element.source.split(".");
 

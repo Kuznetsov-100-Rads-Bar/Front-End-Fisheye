@@ -19,15 +19,15 @@
   </header>
   <main id="main" class="photograph_page">
     <div class="photograph-header">
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button id="openFormButton" tabindex="2" class="contact_button">Contactez-moi</button>
     </div>
-    <section class="photograph_works">
+    <section class=" photograph_works">
       <div class="filter">
         <p aria-label="Menu déroulant qui sert à trier les medias par popularité, date ou par ordre alphabétique,."
           class="filter-text">Trier par</p>
         <div class="filter-selector">
           <select title="Menu déroulant qui sert à trier les medias par popularité, date ou par ordre alphabétique,."
-            tabindex="1" name="filter" id="filterSelector">
+            tabindex="3" name="filter" id="filterSelector">
             <option aria-label="Trier par popularité," value="popularity">Popularité</option>
             <option aria-label="Trier par date de publication," value="date">Date</option>
             <option aria-label="Trier par ordre alphabétique," value="title">Title</option>
@@ -64,7 +64,7 @@
     <div class="modal">
       <header>
         <h2 id="formHeaderTitle">Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <img id="closeForm" src="assets/icons/close.svg" />
       </header>
       <form id="formContact" name="reserve" action="#" method="get">
         <div>

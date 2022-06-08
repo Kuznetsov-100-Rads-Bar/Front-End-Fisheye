@@ -1,6 +1,9 @@
 const lightBoxModal = document.querySelector(".lightbox_modal");
 const lightBoxMediaContainer = document.querySelector(".media_container");
 
+const root = document.querySelector(".photographer");
+
+
 export class Lightbox {
     constructor(medias, photographerName) {
         this.medias = medias;
@@ -9,11 +12,27 @@ export class Lightbox {
         this.isDisplayed = false;
     }
 
+    keyHandler = (event) => {
+        const key = event.key;
+
+        if (key === "ArrowRight") {
+            this.change("next");
+        } else if (key === "ArrowLeft") {
+            this.change("previous");
+        } else if (key === "Escape") {
+            this.close();
+        }
+        // console.log(key);
+    }
 
     display = (selectedMedia) => {
         if (this.isDisplayed) {
+            root.removeEventListener("keyup", (event) => this.keyHandler(event));
             return this.close();
         }
+
+
+        root.addEventListener("keyup", this.keyHandler);
 
         const splittedSelectedMedia = selectedMedia.split(".");
         const isMediaVideo = Boolean(splittedSelectedMedia[splittedSelectedMedia.length - 1] === "mp4");
@@ -53,8 +72,9 @@ export class Lightbox {
     }
 
     close = () => {
-        console.log("IsShowed ?", this.isDisplayed)
+        // console.log("IsShowed ?", this.isDisplayed)
         if (this.isDisplayed) {
+            root.removeEventListener("keyup", this.keyHandler);
             this.isDisplayed = false;
             return lightBoxModal.style.display = 'none';
         }
@@ -97,4 +117,6 @@ export class Lightbox {
 
         return "change media";
     }
+
+
 }

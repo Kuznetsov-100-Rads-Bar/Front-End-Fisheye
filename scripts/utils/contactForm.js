@@ -8,6 +8,12 @@ function closeModal() {
     modal.style.display = "none";
 }
 
+const closeFormButton = document.getElementById("closeForm");
+closeFormButton.addEventListener("click", closeModal);
+
+const openFormButton = document.getElementById("openFormButton");
+openFormButton.addEventListener("click", displayModal);
+
 // Je selectionne et je stocke tous les éléments nécessaires.
 const form = document.getElementById("formContact");
 
