@@ -23,7 +23,7 @@ data object. */
     /* Création d'un lien vers la page photographe.html. */
     link.setAttribute(
       "href",
-      window.location.origin + "/photographer.html?id=" + id
+      "./photographer.html?id=" + id
     );
     const article = document.createElement("article");
 
