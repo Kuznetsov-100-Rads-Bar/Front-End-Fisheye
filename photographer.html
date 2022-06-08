@@ -13,7 +13,7 @@
 <body class="photographer">
   <header>
     <a tabindex="1" href="./" title="Vers la page d'accueil">
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" alt="Logo du site FishEye" />
     </a>
   </header>
   <main id="main" class="photograph_page">
@@ -25,7 +25,8 @@
         <p aria-label="Menu déroulant qui sert à trier les medias par popularité, date ou par ordre alphabétique,."
           class="filter-text">Trier par</p>
         <div class="filter-selector">
-          <select title="Menu déroulant qui sert à trier les medias par popularité, date ou par ordre alphabétique,."
+          <select label="Menu déroulant pour filtrer les medias."
+            title="Menu déroulant qui sert à trier les medias par popularité, date ou par ordre alphabétique,."
             tabindex="3" name="filter" id="filterSelector">
             <option aria-label="Trier par popularité," value="popularity">Popularité</option>
             <option aria-label="Trier par date de publication," value="date">Date</option>
@@ -63,7 +64,7 @@
     <div class="modal">
       <header>
         <h2 id="formHeaderTitle">Contactez-moi</h2>
-        <img id="closeForm" src="assets/icons/close.svg" />
+        <img id="closeForm" src="assets/icons/close.svg" alt="close contact form icon" />
       </header>
       <form id="formContact" name="reserve" action="#" method="get">
         <div>
