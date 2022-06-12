@@ -16,6 +16,16 @@ export default class {
   init = (photographer, medias) => {
     const filterSelector = document.getElementById('filterSelector');
 
+    /* It's a function that takes an event as a parameter, then it creates a selectedValue variable that
+   is the value of the event's target, then it creates an updatedMedias variable that is an empty
+   array, then it checks if the selectedValue is equal to 'popularity', and if it is, then it sets
+   the updatedMedias variable to the medias array sorted by the likes property, then it checks if
+   the selectedValue is equal to 'date', and if it is, then it sets the updatedMedias variable to
+   the medias array sorted by the date property, then it checks if the selectedValue is equal to
+   'title', and if it is, then it sets the updatedMedias variable to the medias array sorted by the
+   title property, then it logs the updatedMedias variable to the console, then it calls the clear
+   function, then it loops through the updatedMedias array and calls the add function, then it sets
+   the tabIndex variable to 3, and then it calls the display function. */
     filterSelector.addEventListener('change', (event) => {
       const selectedValue = event.target.value;
       let updatedMedias = [];
