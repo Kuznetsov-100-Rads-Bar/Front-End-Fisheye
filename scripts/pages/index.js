@@ -1,4 +1,6 @@
-import { photographerFactory } from "../factories/photographer.js";
+/* eslint-disable import/extensions */
+/* eslint-disable max-len */
+import photographerFactory from '../factories/photographer.js';
 /**
  * It fetches the JSON file, then returns the photographers array
  * @returns The function getPhotographers is returning an object with a property photographers.
@@ -6,9 +8,7 @@ import { photographerFactory } from "../factories/photographer.js";
 async function getPhotographers() {
   // Penser à remplacer par les données récupérées dans le json
   // Renommer ma constante en data ()
-  const data = await fetch("data/photographers.json").then((result) =>
-    result.json()
-  );
+  const data = await fetch('data/photographers.json').then((result) => result.json());
   // et bien retourner le tableau photographers seulement une fois
   // console.log(data);
   return {
@@ -19,7 +19,7 @@ async function getPhotographers() {
 /* Creating a function called displayData that takes a parameter called photographers. */
 async function displayData(photographers) {
   /* Selecting the element with the class photographer_section. */
-  const photographersSection = document.querySelector(".photographer_section");
+  const photographersSection = document.querySelector('.photographer_section');
 
   /* A forEach loop that loops through the photographers array and calls the function
   photographerFactory() with each photographer object as an argument. It then calls the function

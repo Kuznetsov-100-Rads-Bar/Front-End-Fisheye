@@ -131,10 +131,15 @@ form textarea {
 
 .close_modal {
     position: absolute;
-    width: 42px;
     cursor: pointer;
     right: 42px;
     top: 32px;
+    border: none;
+    background: transparent;
+}
+
+.close_modal_image {
+    width: 42px;
 }
 
 .lightbox_content {
