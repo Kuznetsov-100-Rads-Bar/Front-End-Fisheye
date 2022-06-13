@@ -27,6 +27,34 @@ export default class {
     this.isDisplayed = false;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  trapFocus = (modal) => {
+    // add all the elements inside modal which you want to make focusable
+    const focusableElements = Array.from(modal.querySelectorAll('button'));
+    // const modal = document.querySelector('#exampleModal'); // select the modal by it's id
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+    document.addEventListener('keydown', (e) => {
+      const isTabPressed = e.key === 'Tab' || e.code === '9';
+      if (!isTabPressed) {
+        return;
+      }
+
+      if (e.shiftKey) { // if shift key pressed for shift + tab combination
+        if (document.activeElement === firstFocusableElement) {
+          lastFocusableElement.focus(); // add focus for the last focusable element
+          e.preventDefault();
+        }
+      } else if (document.activeElement === lastFocusableElement) {
+        firstFocusableElement.focus();
+        e.preventDefault();
+      }
+    });
+    // console.log(firstFocusableElement, ' /n', focusableElements);
+    firstFocusableElement.focus();
+  };
+
   keyHandler = (event) => {
     const { key } = event;
 
@@ -46,6 +74,7 @@ export default class {
       return this.close();
     }
 
+    this.trapFocus(lightBoxModal);
     root.addEventListener('keyup', this.keyHandler);
 
     const splittedSelectedMedia = selectedMedia.split('.');

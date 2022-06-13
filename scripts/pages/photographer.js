@@ -73,6 +73,7 @@ const initLighbox = (medias, photographerName) => {
     const splittedMedia = media.attributes.src.value.split('/');
     const mediaName = splittedMedia[splittedMedia.length - 1];
     lightBox.display(mediaName);
+    lightBoxCloseButton.focus();
   };
 
   mediaSection.addEventListener('click', (event) => {
