@@ -1,6 +1,20 @@
 function displayModal() {
   const modal = document.getElementById('contact_modal');
+  const closeBtn = document.querySelector('#closeForm');
+  const submitBtn = document.querySelectorAll('.contact_button')[1];
+
+
   modal.style.display = 'block';
+  closeBtn.focus();
+
+  modal.addEventListener("keydown", (e) => {
+   
+    if (document.activeElement === submitBtn) {
+      e.preventDefault();
+      closeBtn.focus();
+    }
+    
+  });
 }
 
 function closeModal() {
