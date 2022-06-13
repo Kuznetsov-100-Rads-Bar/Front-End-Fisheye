@@ -143,6 +143,8 @@ font-weight: bold;
 
 .likes-count {
   font-size: 18px;
+  color: #901C1C;
+  font-weight: 500;
 }
 
 .heart-icon {
