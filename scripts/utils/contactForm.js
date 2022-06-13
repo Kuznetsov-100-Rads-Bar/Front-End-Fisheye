@@ -1,19 +1,24 @@
+/* eslint-disable max-len */
+/**
+ * When the modal is displayed, the close button is focused. If the user presses the tab key, the focus
+ * will move to the submit button. If the user presses the enter key while the submit button is
+ * focused, the focus will move back to the close button.
+ */
 function displayModal() {
   const modal = document.getElementById('contact_modal');
   const closeBtn = document.querySelector('#closeForm');
   const submitBtn = document.querySelectorAll('.contact_button')[1];
 
-
   modal.style.display = 'block';
   closeBtn.focus();
 
-  modal.addEventListener("keydown", (e) => {
-   
+  /* Listening for a keydown event on the modal. If the active element is the submit button, it will
+  prevent the default action and focus on the close button. */
+  modal.addEventListener('keydown', (e) => {
     if (document.activeElement === submitBtn) {
       e.preventDefault();
       closeBtn.focus();
     }
-    
   });
 }
 
