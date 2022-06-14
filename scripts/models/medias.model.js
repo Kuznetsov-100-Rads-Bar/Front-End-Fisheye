@@ -121,9 +121,13 @@ export default class {
       const mediaCardHeartIcon = document.createElement('button');
       mediaCardHeartIcon.setAttribute('type', 'button');
       mediaCardHeartIcon.classList.add('heart-icon');
-      mediaCardHeartIcon.innerHTML = '&#10084;';
+      mediaCardHeartIcon.setAttribute('tabindex', this.tabIndex);
 
       mediaCardHeartIcon.addEventListener('click', (event) => this.updateLikes(event, element));
+
+      const mediaCardHeartIconImage = document.createElement('img');
+      mediaCardHeartIconImage.setAttribute('src', './assets/icons/HeartIcon.png');
+      mediaCardHeartIconImage.setAttribute('alt', 'Icone de coeur pour le bouton qui permet de liker le media.');
 
       cardContainer.appendChild(cardImage);
       cardContainer.appendChild(mediaCardBody);
@@ -131,7 +135,7 @@ export default class {
       mediaCardBody.appendChild(mediaCardBodyLikes);
       mediaCardBodyLikes.appendChild(mediaCardLikesCount);
       mediaCardBodyLikes.appendChild(mediaCardHeartIcon);
-
+      mediaCardHeartIcon.appendChild(mediaCardHeartIconImage);
       return mediaSection.append(cardContainer);
     });
 
@@ -152,7 +156,7 @@ export default class {
 
   updateLikes = (event, element) => {
     const mediaLikes = element.media.initialLikes;
-    const likeSpan = event.target.parentNode.firstChild;
+    const likeSpan = event.target.nodeName === 'IMG' ? event.target.parentNode.parentNode.firstChild : event.target.parentNode.firstChild;
 
     likeSpan.textContent = parseInt(likeSpan.textContent, 10) === mediaLikes ? mediaLikes + 1 : mediaLikes;
 
