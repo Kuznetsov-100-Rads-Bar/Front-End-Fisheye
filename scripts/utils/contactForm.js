@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
 /**
- * When the modal is displayed, the close button is focused. If the user presses the tab key, the focus
- * will move to the submit button. If the user presses the enter key while the submit button is
- * focused, the focus will move back to the close button.
+ * Lorsque le modal est affiché, le bouton de fermeture est focalisé. Si l'utilisateur appuie sur la touche de tabulation, le focus
+ passera au bouton Soumettre. Si l'utilisateur appuie sur la touche Entrée alors que le bouton Soumettre est
+ focalisé, le focus reviendra au bouton de fermeture.
  */
+/* Une fonction qui affiche le modal. */
 function displayModal() {
   const modal = document.getElementById('contact_modal');
   const closeBtn = document.querySelector('#closeForm');
@@ -12,8 +13,8 @@ function displayModal() {
   modal.style.display = 'block';
   closeBtn.focus();
 
-  /* Listening for a keydown event on the modal. If the active element is the submit button, it will
-  prevent the default action and focus on the close button. */
+  /* Écoute d'un événement keydown sur le modal. Si l'élément actif est le bouton d'envoi, il
+  empêcher l'action par défaut et se concentrer sur le bouton de fermeture. */
   modal.addEventListener('keydown', (e) => {
     if (document.activeElement === submitBtn) {
       e.preventDefault();
@@ -22,6 +23,7 @@ function displayModal() {
   });
 }
 
+/* Fermeture du modal. */
 function closeModal() {
   const modal = document.getElementById('contact_modal');
   modal.style.display = 'none';
@@ -41,6 +43,8 @@ const firstName = document.getElementById('firstName');
 const email = document.getElementById('email');
 const message = document.getElementById('message');
 
+/* Une fonction qui empêche l'action par défaut du formulaire et affiche les valeurs du formulaire dans la
+console. */
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   // eslint-disable-next-line no-console
