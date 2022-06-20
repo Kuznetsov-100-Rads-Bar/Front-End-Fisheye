@@ -86,6 +86,11 @@
     text-align: center;
 }
 
+#closeForm {
+    background-color: #DB8876;
+    border: none;
+}
+
 form {
     display: flex;
     width: 100%;
