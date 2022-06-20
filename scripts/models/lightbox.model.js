@@ -139,6 +139,16 @@ export default class {
       }
     }
 
+    const onEnterClick = (target) => {
+      target.addEventListener('keypress', (event) => {
+        if (event.key === 'Space') {
+          event.target.click();
+          event.preventDefault();
+        }
+        onEnterClick('Space');
+      });
+    };
+
     const isMediaVideo = Boolean(this.medias[this.currentImageIndex].video);
 
     const mediaSource = `assets/medias/${this.photographerName.split(' ')[0]}/${isMediaVideo ? this.medias[this.currentImageIndex].video : this.medias[this.currentImageIndex].image}`;
