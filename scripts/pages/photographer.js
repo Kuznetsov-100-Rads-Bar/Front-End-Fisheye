@@ -1,13 +1,17 @@
 /* eslint-disable max-len */
 /* eslint-disable import/extensions */
-/* It's importing the classes from the models folder. */
+/* On importe les classes du dossier des modèles. */
 import MediaList from '../models/medias.model.js';
+
+/* On importe la classe PhotographerProfile à partir du fichier photographeProfile.model.js. */
 import PhotographerProfile from '../models/photographerProfile.model.js';
+
+/* On importe la classe Lightbox du fichier lightbox.model.js. */
 import Lightbox from '../models/lightbox.model.js';
 
 /**
- * If the photographerId is not a number, or if the photographerId is not found in the photographers
- * array, then redirect to the homepage.
+ * Si le photographeId n'est pas un nombre, ou si le photographeId n'est pas trouvé dans les photographes
+ * tableau, puis rediriger vers la page d'accueil.
  * @returns The photographer object.
  */
 const fetchPhotographer = async () => {
@@ -23,7 +27,6 @@ const fetchPhotographer = async () => {
 
 /* Il récupère les données du fichier photographers.json et filtre le tableau de médias pour n'inclure que le
   médias qui ont le même photographeId que la photographie. */
-
 const getMedias = async (photograph) => {
   const data = await fetch('./data/photographers.json').then((response) => response.json());
   const medias = data.media.filter((media) => media.photographerId === photograph.id);
@@ -32,9 +35,9 @@ const getMedias = async (photograph) => {
 };
 
 /**
- * This function takes a photographer object as an argument and creates a new PhotographerProfile
- * object with the photographer's name, city, country, tagline, and portrait. Then it displays the
- * photographer's profile.
+ * Cette fonction prend un objet photographe comme argument et crée un nouveau PhotographerProfile
+ * L'objet avec le nom, la ville, le pays, le slogan et le portrait du photographe. Ensuite, il affiche le
+ * profil du photographe.
  * @param photographer - {
  */
 const displayPhotographerProfile = (photographer) => {
@@ -43,11 +46,11 @@ const displayPhotographerProfile = (photographer) => {
 };
 
 /**
- * This function creates a new MediaList object, and then calls the init method on that object, passing
- * in the photographer and medias parameters.
+ *Cette fonction crée un nouvel objet MediaList, puis appelle la méthode init sur cet objet, qui passe
+  dans les paramètres du photographe et des médias.
  * @param photographer - The photographer's name
- * @param medias - an array of objects, each object has a property called "media_type" which is either
- * "image" or "video"
+ * @param medias - un tableau d'objets, chaque objet a une propriété appelée "media_type" qui est soit
+  "image" ou "video"
  */
 const displayMedias = async (photographer, medias) => {
   const mediaList = new MediaList();
@@ -55,9 +58,9 @@ const displayMedias = async (photographer, medias) => {
 };
 
 /**
- * It takes an array of media objects and a photographer name, and then it creates a new Lightbox
- * object, and then it adds event listeners to the media section, the next and previous buttons, and
- * the close button.
+ * Il prend un tableau d'objets multimédias et un nom de photographe, puis il crée une nouvelle Lightbox
+  objet, puis il ajoute des écouteurs d'événements à la section média, les boutons suivant et précédent, et
+  le bouton de fermeture.
  * @param medias - an array of media objects
  * @param photographerName - "John Doe"
  */
@@ -69,6 +72,14 @@ const initLighbox = (medias, photographerName) => {
   const lightBoxPreviousButton = document.querySelector('.left_arrow');
   const mediaSection = document.getElementById('mediaSection');
 
+  /* Il prend un objet média comme argument, divise l'attribut source du média en un tableau, puis
+   utilise le dernier élément du tableau comme nom du média.
+
+   La fonction appelle ensuite la méthode d'affichage sur l'objet lightBox, en transmettant le nom du média sous la forme d'argument.
+
+   Enfin, la fonction définit le focus sur le lightBoxCloseButton.
+  * @param media - the image that was clicked on
+  */
   const displayLightbox = (media) => {
     const splittedMedia = media.attributes.src.value.split('/');
     const mediaName = splittedMedia[splittedMedia.length - 1];
@@ -76,6 +87,8 @@ const initLighbox = (medias, photographerName) => {
     lightBoxCloseButton.focus();
   };
 
+  /* Il écoute l'événement click sur la mediaSection. Si la cible de l'événement contient la classe
+media-img, alors il affichera la lightbox. */
   mediaSection.addEventListener('click', (event) => {
     if (event.target.classList.contains('media-img')) {
       const media = event.target;
@@ -83,6 +96,8 @@ const initLighbox = (medias, photographerName) => {
     }
   });
 
+  /* Il écoute l'événement keyup sur la mediaSection. Si la cible de l'événement contient la carte média
+classe, puis il affichera la lightbox. */
   mediaSection.addEventListener('keyup', (event) => {
     if (event.target.classList.contains('media-card')) {
       if (event.key === 'Enter' || event.key === ' ') {
@@ -101,7 +116,7 @@ const initLighbox = (medias, photographerName) => {
 };
 
 /**
- * An async function that is called when the page loads.
+ * Une fonction asynchrone appelée lors du chargement de la page.
  */
 const init = async () => {
   /* On obtient l'identifiant du photographe à partir de l'URL. */
@@ -111,7 +126,6 @@ const init = async () => {
     en faite ça veut dire que l'on va  créer un nouvel objet à partir de ma fonction
      ou de ma classe.
     */
-
   const medias = await getMedias(photographer);
 
   await initLighbox(medias, photographer.name);
@@ -120,5 +134,5 @@ const init = async () => {
   await displayMedias(photographer, medias);
 };
 
-/* It's calling the function init. */
+/* Il appelle la fonction init. */
 init();
