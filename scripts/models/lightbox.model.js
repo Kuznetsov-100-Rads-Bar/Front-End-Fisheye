@@ -57,14 +57,24 @@ export default class {
 
   keyHandler = (event) => {
     const { key } = event;
+    const { classList } = event.target;
 
-    if (key === 'ArrowRight') {
-      this.change('next');
+    if (key === ' ') {
+      if (classList.contains('left_arrow_button')) {
+        return this.change('previous');
+      }
+      if (classList.contains('right_arrow_button')) {
+        return this.change('next');
+      }
+    } else if (key === 'ArrowRight' || key.includes(' ')) {
+      return this.change('next');
     } else if (key === 'ArrowLeft') {
-      this.change('previous');
-    } else if (key === 'Escape') {
-      this.close();
+      return this.change('previous');
     }
+
+    //  else if (key === 'Escape') {
+    //   this.close();
+    // }
     // console.log(key);
   };
 
@@ -75,7 +85,7 @@ export default class {
     }
 
     this.trapFocus(lightBoxModal);
-    root.addEventListener('keyup', this.keyHandler);
+    root.addEventListener('keyup', (event) => this.keyHandler(event));
 
     const splittedSelectedMedia = selectedMedia.split('.');
     const isMediaVideo = Boolean(splittedSelectedMedia[splittedSelectedMedia.length - 1] === 'mp4');
@@ -138,16 +148,6 @@ export default class {
         this.currentImageIndex -= 1;
       }
     }
-
-    const onEnterClick = (target) => {
-      target.addEventListener('keypress', (event) => {
-        if (event.key === 'Space') {
-          event.target.click();
-          event.preventDefault();
-        }
-        onEnterClick('Space');
-      });
-    };
 
     const isMediaVideo = Boolean(this.medias[this.currentImageIndex].video);
 
