@@ -66,15 +66,13 @@ export default class {
       if (classList.contains('right_arrow_button')) {
         return this.change('next');
       }
-    } else if (key === 'ArrowRight' || key.includes(' ')) {
+    } else if (key === 'ArrowRight') {
       return this.change('next');
     } else if (key === 'ArrowLeft') {
       return this.change('previous');
+    } else if (key === 'Escape') {
+      return this.close();
     }
-
-    //  else if (key === 'Escape') {
-    //   this.close();
-    // }
     // console.log(key);
   };
 
