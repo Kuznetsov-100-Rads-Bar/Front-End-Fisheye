@@ -55,6 +55,8 @@ export default class {
     firstFocusableElement.focus();
   };
 
+  // Accessibilité
+  /* Une fonction qui est appelée lorsqu'une touche est enfoncée. */
   keyHandler = (event) => {
     const { key } = event;
     const { classList } = event.target;
