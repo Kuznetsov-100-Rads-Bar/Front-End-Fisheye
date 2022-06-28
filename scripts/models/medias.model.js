@@ -1,6 +1,9 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable max-len */
 /* It's a class that creates a list of media objects, and displays them on the page. */
+
+const factoryMediaDom = (src) => document.createElement(src === 'mp4' ? 'video' : 'img');
+
 export default class {
   /**
      * It takes an object with a photographerName and media object as parameters, then it creates a
@@ -63,6 +66,8 @@ export default class {
       this.display();
     });
 
+    /* Il trie le tableau medias par la propriété likes, puis il parcourt le tableau medias
+    et en définissant la propriété initialLikes sur la propriété likes , puis il appelle l'add fonction. */
     medias.sort((a, b) => a.likes < b.likes)
       .forEach((media) => {
         media.initialLikes = media.likes;
@@ -99,7 +104,8 @@ export default class {
 
       const sourceType = element.source.split('.');
 
-      const cardImage = document.createElement(sourceType[1] === 'mp4' ? 'video' : 'img');
+      const cardImage = factoryMediaDom(sourceType[1]);
+      // const cardImage = document.createElement(sourceType[1] === 'mp4' ? 'video' : 'img');
       cardImage.setAttribute('src', element.source);
       cardImage.classList.add('media-img');
       cardImage.setAttribute('alt', `Media ${media.title}`);

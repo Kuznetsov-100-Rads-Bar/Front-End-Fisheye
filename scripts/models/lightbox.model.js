@@ -61,7 +61,7 @@ export default class {
     const { key } = event;
     const { classList } = event.target;
 
-    if (key === ' ') {
+    if (key === ' ' || key === 'Enter') {
       if (classList.contains('left_arrow_button')) {
         return this.change('previous');
       }
