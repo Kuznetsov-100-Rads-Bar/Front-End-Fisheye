@@ -61,6 +61,9 @@ export default class {
     const { key } = event;
     const { classList } = event.target;
 
+    /* Vérifier si la touche enfoncée est la barre d'espace ou la touche entrée. Si c'est le cas, il vérifie si le
+  classList contient la classe left_arrow_button ou right_arrow_button. Si c'est le cas, il renvoie le
+  changement de fonction avec le paramètre précédent ou suivant. */
     if (key === ' ' || key === 'Enter') {
       if (classList.contains('left_arrow_button')) {
         return this.change('previous');
@@ -78,6 +81,7 @@ export default class {
     // console.log(key);
   };
 
+  /* Une fonction qui affiche la lightbox. */
   display = (selectedMedia) => {
     if (this.isDisplayed) {
       root.removeEventListener('keyup', (event) => this.keyHandler(event));
@@ -134,6 +138,7 @@ export default class {
     }
   };
 
+  /* Une fonction qui change le média affiché dans la lightbox. */
   change = (direction) => {
     if (direction === 'next') {
       if (!this.medias[this.currentImageIndex + 1]) {

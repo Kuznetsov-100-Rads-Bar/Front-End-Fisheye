@@ -4,12 +4,11 @@
 
 const factoryMediaDom = (src) => document.createElement(src === 'mp4' ? 'video' : 'img');
 
+/* C'est une classe qui a un constructeur, une fonction init, une fonction add, une fonction clear, un display
+fonction, une fonction displayLikes et une fonction updateLikes. */
 export default class {
   /**
-     * It takes an object with a photographerName and media object as parameters, then it creates a
-     * source variable that is a string of the photographer's name and the media's image or video, then
-     * it pushes the source, photographerName, and media object into the medias array, and then it
-     * returns true.
+     * Il prend un objet avec un nom de photographe et un objet multimédia comme paramètres, puis il crée un variable source qui est une chaîne du nom du photographe et de l'image ou de la vidéo du média, puis il pousse la source, le nom du photographe et l'objet multimédia dans le tableau des médias, puis il renvoie true.
      */
   constructor() {
     this.medias = [];
@@ -19,16 +18,16 @@ export default class {
   init = (photographer, medias) => {
     const filterSelector = document.getElementById('filterSelector');
 
-    /* It's a function that takes an event as a parameter, then it creates a selectedValue variable that
-   is the value of the event's target, then it creates an updatedMedias variable that is an empty
-   array, then it checks if the selectedValue is equal to 'popularity', and if it is, then it sets
-   the updatedMedias variable to the medias array sorted by the likes property, then it checks if
-   the selectedValue is equal to 'date', and if it is, then it sets the updatedMedias variable to
-   the medias array sorted by the date property, then it checks if the selectedValue is equal to
-   'title', and if it is, then it sets the updatedMedias variable to the medias array sorted by the
-   title property, then it logs the updatedMedias variable to the console, then it calls the clear
-   function, then it loops through the updatedMedias array and calls the add function, then it sets
-   the tabIndex variable to 3, and then it calls the display function. */
+    /* C'est une fonction qui prend un événement comme paramètre, puis crée une variable selectedValue qui
+   est la valeur de la cible de l'événement, puis il crée une variable updatedMedias qui est vide
+   tableau, puis il vérifie si la valeur sélectionnée est égale à 'popularité', et si c'est le cas, alors il définit
+   la variable updatedMedias au tableau medias trié par la propriété likes, puis il vérifie si
+   le selectedValue est égal à 'date', et si c'est le cas, il définit la variable updatedMedias sur
+   le tableau des médias trié par la propriété date, puis il vérifie si la valeur sélectionnée est égale à
+   'title', et si c'est le cas, il définit la variable updatedMedias sur le tableau medias trié par le
+   title propriété, puis il enregistre la variable updatedMedias dans la console, puis il appelle le clear
+   fonction, puis il parcourt le tableau updatedMedias et appelle la fonction add, puis il définit
+   la variable tabIndex à 3, puis il appelle la fonction d'affichage. */
     filterSelector.addEventListener('change', (event) => {
       const selectedValue = event.target.value;
       let updatedMedias = [];
@@ -79,12 +78,17 @@ export default class {
     this.displayLikes();
   };
 
+  /* C'est une fonction qui prend un objet avec un nom de photographe et un objet média comme paramètres,
+ puis il crée une variable source qui est une chaîne du nom du photographe et de l'image ou de la vidéo
+ du média, puis il pousse la source, le nom du photographe et l'objet média dans le média
+ tableau, alors il retourne true. */
   add = ({ photographerName, media }) => {
     const source = `assets/medias/${photographerName.split(' ')[0]}/${media.image ? media.image : media.video}`;
     this.medias.push({ source, media });
     return this.medias;
   };
 
+  /* C'est une fonction qui efface la liste des médias. */
   clear = () => {
     this.medias = [];
     return 'Media list cleared';
@@ -148,6 +152,7 @@ export default class {
     return this.medias;
   };
 
+  /* C'est une fonction qui affiche le nombre de likes dans la section des statistiques des utilisateurs. */
   displayLikes = () => {
     const likesSpan = document.querySelector('.user_statistics_likes');
 
@@ -164,8 +169,12 @@ export default class {
     const mediaLikes = element.media.initialLikes;
     const likeSpan = event.target.nodeName === 'IMG' ? event.target.parentNode.parentNode.firstChild : event.target.parentNode.firstChild;
 
+    /* Il vérifie si les likes des médias sont égaux aux likes initiaux, et si c'est le cas, il ajoute 1 au
+les goûts des médias, et si ce n'est pas le cas, il définit les goûts des médias sur les goûts initiaux. */
     likeSpan.textContent = parseInt(likeSpan.textContent, 10) === mediaLikes ? mediaLikes + 1 : mediaLikes;
 
+    /* Il vérifie si les likes du média sont égaux aux likes initiaux, et si c'est le cas, il ajoute 1 au
+   goûts des médias, et si ce n'est pas le cas, il définit les goûts des médias sur les goûts initiaux. */
     if (element.media.likes === mediaLikes) {
       element.media.likes += 1;
     } else {
