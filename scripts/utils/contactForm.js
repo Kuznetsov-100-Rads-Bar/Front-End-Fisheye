@@ -24,14 +24,23 @@ function displayModal() {
 }
 
 /* Fermeture du modal. */
+/**
+ *Lorsque l'utilisateur clique sur le bouton de fermeture, le modal sera masqué.
+ */
 function closeModal() {
   const modal = document.getElementById('contact_modal');
   modal.style.display = 'none';
 }
 
+/* Sélection de l'élément avec l'id de closeForm et stockage dans une variable appelée closeFormButton. */
 const closeFormButton = document.getElementById('closeForm');
+
+/* À l'écoute d'un événement click sur l'élément closeFormButton et lorsqu'il est cliqué, il appellera le
+Fonction closeModal. */
 closeFormButton.addEventListener('click', closeModal);
 
+/* L'écoute d'un événement click sur l'élément avec l'id de openFormButton et quand on clique dessus, il
+appellera la fonction displayModal. */
 const openFormButton = document.getElementById('openFormButton');
 openFormButton.addEventListener('click', displayModal);
 
@@ -55,8 +64,11 @@ form.addEventListener('submit', (e) => {
     message: message.value,
   });
 
+  /* Effacer le formulaire après que l'utilisateur l'a soumis. */
   lastName.value = '';
   firstName.value = '';
   email.value = '';
   message.value = '';
 });
+
+// On logue les valeurs du formulaire dans la console.
