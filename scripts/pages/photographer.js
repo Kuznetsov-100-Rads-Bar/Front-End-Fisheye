@@ -10,7 +10,7 @@ import PhotographerProfile from '../models/photographerProfile.model.js';
 import Lightbox from '../models/lightbox.model.js';
 
 /**
- * Si le photographeId n'est pas un nombre, ou si le photographeId n'est pas trouvé dans les photographes
+ * Si le photographeId n'est pas un nombre, ou si le photographeId n'est pas trouvé dans les photographes du
  * tableau, puis rediriger vers la page d'accueil.
  * @returns The photographer object.
  */
@@ -19,9 +19,12 @@ const fetchPhotographer = async () => {
   const fetchPhotographerData = await fetch('./data/photographers.json').then((data) => data.json());
   const photographer = fetchPhotographerData.photographers.find((profile) => profile.id === photographerId);
 
+  /* Vérifier si le photographeId n'est pas un nombre ou si le photographeId n'est pas trouvé dans le
+ tableau des photographes, puis rediriger vers la page d'accueil. */
   if (!photographerId || !Number(photographerId) || !photographer) {
     return window.location.assign('../');
   }
+  /* Restitution de l'objet photographe. */
   return photographer;
 };
 
@@ -31,6 +34,7 @@ const getMedias = async (photograph) => {
   const data = await fetch('./data/photographers.json').then((response) => response.json());
   const medias = data.media.filter((media) => media.photographerId === photograph.id);
 
+  /* Il renvoie un nouveau tableau avec les mêmes éléments que le tableau `medias`. */
   return [...medias];
 };
 
@@ -107,6 +111,8 @@ classe, puis il affichera la lightbox. */
     }
   });
 
+  /* Écoute d'un événement de clic sur le lightBoxNextButton. Si l'événement est déclenché, il appellera le
+  change la méthode sur l'objet lightBox, en passant la chaîne 'next' comme argument. */
   lightBoxNextButton.addEventListener('click', () => lightBox.change('next'));
   lightBoxPreviousButton.addEventListener('click', () => lightBox.change('previous'));
 
@@ -123,14 +129,19 @@ const init = async () => {
   const photographer = await fetchPhotographer();
 
   /* Le mot clé ci-dessous "new" nous permet d'instancier un nouvel objet =>
-    en faite ça veut dire que l'on va  créer un nouvel objet à partir de ma fonction
+    en faite ça veut dire que l'on va créer un nouvel objet à partir de ma fonction
      ou de ma classe.
     */
   const medias = await getMedias(photographer);
 
+  /* Appel de la fonction initLighbox et passage des médias et du photographe.nom comme arguments. */
   await initLighbox(medias, photographer.name);
 
+  /* En appelant la fonction displayPhotographerProfile et en passant l'objet photographe en tant que
+  argument. */
   await displayPhotographerProfile(photographer);
+
+  /* Appel de la fonction displayMedias et passage du photographe et des médias en arguments. */
   await displayMedias(photographer, medias);
 };
 
