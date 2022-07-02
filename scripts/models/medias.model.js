@@ -94,6 +94,7 @@ export default class {
     return 'Media list cleared';
   };
 
+  /* C'est une fonction qui affiche la liste des médias sur la page. */
   display = () => {
     const mediaSection = document.getElementById('mediaSection');
     mediaSection.innerHTML = '';
@@ -110,10 +111,16 @@ export default class {
 
       const cardImage = factoryMediaDom(sourceType[1]);
       // const cardImage = document.createElement(sourceType[1] === 'mp4' ? 'video' : 'img');
+      /* Il définit l'attribut src de l'élément cardImage sur la propriété source de l'élément
+      paramètre. */
       cardImage.setAttribute('src', element.source);
+      /* Il ajoute la classe media-img à l'élément cardImage. */
       cardImage.classList.add('media-img');
+      /* Il définit l'attribut alt de l'élément cardImage sur la valeur de media.title
+      propriété. */
       cardImage.setAttribute('alt', `Media ${media.title}`);
 
+      /* Il crée un élément div et y ajoute la classe media-card-body. */
       const mediaCardBody = document.createElement('div');
       mediaCardBody.classList.add('media-card-body');
 
@@ -133,12 +140,20 @@ export default class {
       mediaCardHeartIcon.classList.add('heart-icon');
       mediaCardHeartIcon.setAttribute('tabindex', this.tabIndex);
 
+      /* Il ajoute un écouteur d'événement à l'élément mediaCardHeartIcon, et lorsque l'événement est
+      déclenché, il appelle la fonction updateLikes avec l'événement et l'élément en paramètres. */
       mediaCardHeartIcon.addEventListener('click', (event) => this.updateLikes(event, element));
 
+      /* Il crée un élément d'image. */
       const mediaCardHeartIconImage = document.createElement('img');
+      /* Il définit l'attribut src de l'élément mediaCardHeartIconImage sur HeartIcon.png
+      image. */
       mediaCardHeartIconImage.setAttribute('src', './assets/icons/HeartIcon.png');
+      /* Il définit l'attribut alt de l'élément mediaCardHeartIconImage sur 'Icone de coeur pour
+      le bouton qui permet de liker le media.'. */
       mediaCardHeartIconImage.setAttribute('alt', 'Icone de coeur pour le bouton qui permet de liker le media.');
 
+      /* C'est créer une carte avec les médias et les likes. */
       cardContainer.appendChild(cardImage);
       cardContainer.appendChild(mediaCardBody);
       mediaCardBody.appendChild(mediaCardBodyTitle);
@@ -149,6 +164,7 @@ export default class {
       return mediaSection.append(cardContainer);
     });
 
+    /* Il renvoie le tableau des médias. */
     return this.medias;
   };
 
@@ -156,12 +172,15 @@ export default class {
   displayLikes = () => {
     const likesSpan = document.querySelector('.user_statistics_likes');
 
+    /* Il ajoute les likes de chaque média à la variable likes. */
     let likes = 0;
     this.medias.forEach((media) => {
       likes += media.media.likes;
     });
 
+    /* Il affiche le nombre de likes dans la section des statistiques de l'utilisateur. */
     likesSpan.innerHTML = `${likes} &#10084;`;
+    /* Il renvoie la valeur de la variable likes. */
     return likes;
   };
 
