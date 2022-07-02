@@ -2,8 +2,8 @@
 /* eslint-disable max-len */
 import photographerFactory from '../factories/photographer.js';
 /**
- * It fetches the JSON file, then returns the photographers array
- * @returns The function getPhotographers is returning an object with a property photographers.
+ * Il récupère le fichier JSON, puis renvoie le tableau des photographes
+ * @returns La fonction getPhotographers renvoie un objet avec une propriété photographes.
  */
 async function getPhotographers() {
   // Penser à remplacer par les données récupérées dans le json
@@ -21,10 +21,10 @@ async function displayData(photographers) {
   /* Selecting the element with the class photographer_section. */
   const photographersSection = document.querySelector('.photographer_section');
 
-  /* A forEach loop that loops through the photographers array and calls the function
-  photographerFactory() with each photographer object as an argument. It then calls the function
-  getUserCardDOM() on the result of photographerFactory() and appends the result to the element with
-  the class photographer_section. */
+  /* Une boucle forEach qui parcourt le tableau des photographes et appelle la fonction
+  photographeFactory() avec chaque objet photographe comme argument. Il appelle alors la fonction
+  getUserCardDOM() sur le résultat de photographeFactory() et ajoute le résultat à l'élément avec
+  la classe photographe_section. */
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
@@ -33,14 +33,17 @@ async function displayData(photographers) {
 }
 
 /**
- * The function init() is an asynchronous function that calls the function getPhotographers() and then
- * calls the function displayData() with the result of getPhotographers() as an argument.
+ * La fonction init() est une fonction asynchrone qui appelle la fonction getPhotographers() puis
+ * appelle la fonction displayData() avec le résultat de getPhotographers() comme argument.
+ */
+/**
+ * Nous allons récupérer les données de l'API, puis les afficher sur la page.
  */
 async function init() {
   // On récupère les datas des photographes
   const { photographers } = await getPhotographers();
-  /* Calling the function displayData() with the result of getPhotographers() as an argument. */
   displayData(photographers);
 }
 
+/* Appel de la fonction init() */
 init();
