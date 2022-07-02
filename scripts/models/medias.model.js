@@ -165,6 +165,17 @@ export default class {
     return likes;
   };
 
+  /* C'est une fonction qui prend un événement et un élément en paramètre, puis crée une variable
+ mediaLikes qui est la propriété initialeLikes de la propriété media de l'élément, puis il crée
+ une variable likeSpan qui est le firstChild du parentNode du parentNode de la cible de
+ l'événement si le nodeName de la cible de l'événement est égal à 'IMG', et si ce n'est pas le cas,
+ c'est le premier enfant du parentNode de la cible de l'événement, puis il vérifie si les goûts de
+ les médias sont égaux aux likes initiaux, et si c'est le cas, il ajoute 1 aux likes du
+ médias, et si ce n'est pas le cas, il définit les goûts des médias sur les goûts initiaux, puis il
+ vérifie si les likes du média sont égaux aux likes initiaux, et si c'est le cas, il ajoute 1 à
+ les goûts des médias, et si ce n'est pas le cas, il met les goûts des médias à l'initiale
+ likes, puis il appelle la fonction displayLikes, puis il renvoie un objet avec les likes initiaux
+ et les likes mis à jour. */
   updateLikes = (event, element) => {
     const mediaLikes = element.media.initialLikes;
     const likeSpan = event.target.nodeName === 'IMG' ? event.target.parentNode.parentNode.firstChild : event.target.parentNode.firstChild;
@@ -181,8 +192,10 @@ les goûts des médias, et si ce n'est pas le cas, il définit les goûts des m�
       element.media.likes = mediaLikes;
     }
 
+    /* Il affiche le nombre de likes dans la section des statistiques de l'utilisateur. */
     this.displayLikes();
 
+    /* Il renvoie un objet avec les likes initiaux et les likes mis à jour. */
     return { initialLikes: mediaLikes, updateTo: element.media.likes };
   };
 }
